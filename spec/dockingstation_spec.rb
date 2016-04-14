@@ -4,26 +4,26 @@ require 'dockingstation'
 describe DockingStation do
 	bike = Bike.new
 
-	it "releases a bike method" do
-	expect(subject).to respond_to(:release_bike)
+		it "releases a bike method" do
+		expect(subject).to respond_to(:release_bike)
+		end
+
+	describe '#release_bike' do
+		it "raises an error if empty" do
+		 		expect{subject.release_bike}.to raise_error("Station empty")
+		end
 	end
 
-	# it "raises an error if empty" do
-	# 	if subject.array_of_bikes.count == 0
-	# 		expect{subject.release_bike}.to raise_error("Station empty")
-	# 	end
-	# end
-
-	it "raises an error if full" do
-
-		#if subject.array_of_bikes.count > 20
-		subject.dock(Bike.new)
-		expect{20.times{subject.dock(Bike.new)}}.to raise_error("Station full")
+	describe '#dock' do
+		it "raises an error if full" do
+			subject.dock(Bike.new)
+			expect{20.times{subject.dock(Bike.new)}}.to raise_error("Station full")
+		end
 	end
 
-	it "creates a new bike" do
-		puts "yes, new bike has been created :)"
-	end
+		it "creates a new bike" do
+			puts "yes, new bike has been created :)"
+		end
 
 	it { is_expected.to respond_to(:bike)}
 	it { should respond_to(:dock).with(1).argument }
