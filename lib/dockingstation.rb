@@ -8,12 +8,11 @@ DEFAULT_CAPACITY = 20
 	def initialize(capacity=DEFAULT_CAPACITY)
 	 	@bikes = []
 		@capacity = capacity
-
-
 	end
 
 	def release_bike
 		raise "station empty" if empty?
+		raise "bike is broken" if @bikes.last.broken?
 		@bikes.pop
 	end
 
