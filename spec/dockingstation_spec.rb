@@ -4,6 +4,12 @@ require 'dockingstation'
 describe DockingStation do
 	bike = Bike.new
 
+	describe "#initialize" do
+		it "allows user to set capacity when creating a new docking station" do
+			expect(subject).to respond_to(:initialize).with(1).argument
+		end
+	end
+
 		it "releases a bike method" do
 		expect(subject).to respond_to(:release_bike)
 		end
