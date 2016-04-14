@@ -8,8 +8,6 @@ class Bike
 		@broken = true
 	end
 
-	private
-
 	def broken?
 		@broken
 	end
