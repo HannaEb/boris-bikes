@@ -21,8 +21,8 @@ describe DockingStation do
 
 		it "capacity is variable" do
 			station = DockingStation.new(40)
-			station.capacity.times{station.dock(Bike.new)}
-			expect{station.dock(Bike.new)}.to raise_error("station full")
+			station.capacity.times{station.dock(:bike)}
+			expect{station.dock(:bike)}.to raise_error("station full")
 		end
 	end
 
@@ -31,7 +31,7 @@ describe DockingStation do
 		 		expect{subject.release_bike}.to raise_error("station empty")
 		end
 		it "should not release broken bikes" do
-				bike = Bike.new
+				bike = :bike
 				bike.report_broken
 				station = DockingStation.new
 				station.dock(bike)
@@ -41,8 +41,8 @@ describe DockingStation do
 
 	describe '#dock' do
 		it "raises an error if full" do
-			subject.dock(Bike.new)
-			expect{subject.capacity.times{subject.dock(Bike.new)}}.to raise_error("station full")
+			subject.dock(:bike)
+			expect{subject.capacity.times{subject.dock(:bike)}}.to raise_error("station full")
 		end
 		it 'should be able to dock a bike' do
 			expect(subject.dock(bike)).to eq([bike])
