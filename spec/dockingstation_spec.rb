@@ -31,14 +31,13 @@ describe DockingStation do
 		end
 
 		it "should not release broken bikes" do
-			allow(bike).to receive(:broken?).and_return(true)
+			bike = double("bike", :broken? => true)
 			subject.dock(bike)
 			expect{subject.release_bike}.to raise_error("bike is broken")
 		end
 
 		it "release working bikes" do
-			allow(bike).to receive(:broken?).and_return(false)
-			allow(bike).to receive(:working?).and_return(true)
+			bike = double("bike", :working? => true, :broken? => false)
 			subject.dock(bike)
 			expect(subject.release_bike).to be bike
 		end
