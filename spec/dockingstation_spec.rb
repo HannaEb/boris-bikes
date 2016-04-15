@@ -53,4 +53,12 @@ describe DockingStation do
 		end
 	end
 
+	describe '#track_broken' do
+		it 'filters broken bikes into a seperate array' do
+			bike = double("bike", :broken? => true)
+			subject.dock(bike)
+			subject.track_broken
+			expect($broken_bikes.sample).to be_broken
+		end
+	end
 end

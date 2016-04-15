@@ -1,12 +1,13 @@
 require_relative 'bike'
 
 class DockingStation
-attr_accessor :capacity
+attr_accessor :capacity, :bikes, :broken_bikes
 
 DEFAULT_CAPACITY = 20
 
 	def initialize(capacity=DEFAULT_CAPACITY)
-	 	@bikes = []
+		$broken_bikes = []
+		@bikes = []
 		@capacity = capacity
 	end
 
@@ -21,9 +22,11 @@ DEFAULT_CAPACITY = 20
 		@bikes << bike
 	end
 
-	private
+	def track_broken
+		$broken_bikes, @bikes = @bikes.partition { |bike| bike.broken?}
+	end
 
-attr_reader :bikes
+	private
 
 	def full?
 		@bikes.count >= @capacity

@@ -1,17 +1,19 @@
-require 'bike.rb'
+require_relative 'dockingstation'
 
 class Van
+  attr_accessor :van_space
 
-  def initialize(array)
-    @array = array
+  def initialize
+    @van_space = []
   end
 
-  def broken_bikes
-    array_new = @array.select { |bike| bike.broken? }
+  def pick_up
+    @van_space += $broken_bikes
   end
 
-  def fix_bikes
-    @array
+  def drop_off
   end
 
 end
+
+#van.pick_up(station.track_broken)
